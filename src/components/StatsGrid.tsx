@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { BarChart } from 'lucide-react';
 
 const statsData = [
   {
@@ -46,7 +47,10 @@ const StatsGrid = () => {
       {statsData.map((stat, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
           <CardHeader className="pb-2">
-            <CardTitle className="font-inter text-lg">{stat.title}</CardTitle>
+            <CardTitle className="font-inter text-lg flex items-center gap-2">
+              <BarChart className="h-4 w-4" />
+              {stat.title}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-1">

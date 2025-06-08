@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Heart } from 'lucide-react';
 
 const diversityData = [
   { category: 'Bulgaria', women: 22, eu: 17 },
@@ -19,7 +20,10 @@ const DiversityCard = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-inter">Diversity in Startups</CardTitle>
+        <CardTitle className="font-inter flex items-center gap-2">
+          <Heart className="h-5 w-5" />
+          Diversity in Startups
+        </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
@@ -30,7 +34,7 @@ const DiversityCard = () => {
               <XAxis dataKey="category" />
               <YAxis />
               <Tooltip formatter={(value) => [`${value}%`, 'Women-Led']} />
-              <Bar dataKey="women" fill="hsl(var(--primary))" />
+              <Bar dataKey="women" fill="#1e40af" />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -46,8 +50,8 @@ const DiversityCard = () => {
           </div>
         </div>
         
-        <div className="p-4 bg-green-50 rounded-md">
-          <p className="text-sm text-green-800">
+        <div className="p-4 bg-blue-50 rounded-md">
+          <p className="text-sm text-blue-800">
             <strong>Bulgaria leads CEE</strong> in women-led startup percentage, with 22% vs 17% EU average
           </p>
         </div>
