@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
 const yearlyFunding = [
   { year: '2020', amount: 25 },
@@ -11,10 +11,10 @@ const yearlyFunding = [
 ];
 
 const stageBreakdown = [
-  { name: 'Pre-seed', value: 35, color: '#8884d8' },
-  { name: 'Seed', value: 30, color: '#82ca9d' },
-  { name: 'Series A', value: 25, color: '#ffc658' },
-  { name: 'Growth', value: 10, color: '#ff7300' },
+  { name: 'Pre-seed', value: 35, color: '#000000' },
+  { name: 'Seed', value: 30, color: '#404040' },
+  { name: 'Series A', value: 25, color: '#808080' },
+  { name: 'Growth', value: 10, color: '#C0C0C0' },
 ];
 
 const majorFunds = [
@@ -29,7 +29,7 @@ const FundingChart = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-roboto-slab">Funding Overview</CardTitle>
+        <CardTitle className="font-inter">Funding Overview</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
@@ -63,6 +63,7 @@ const FundingChart = () => {
                   ))}
                 </Pie>
                 <Tooltip formatter={(value) => [`${value}%`, 'Share']} />
+                <Legend />
               </PieChart>
             </ResponsiveContainer>
           </div>

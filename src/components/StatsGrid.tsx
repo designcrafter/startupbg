@@ -46,7 +46,7 @@ const StatsGrid = () => {
       {statsData.map((stat, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
           <CardHeader className="pb-2">
-            <CardTitle className="font-roboto-slab text-lg">{stat.title}</CardTitle>
+            <CardTitle className="font-inter text-lg">{stat.title}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-1">

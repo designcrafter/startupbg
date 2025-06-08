@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 
 const talentByType = [
   { type: 'Frontend Dev', count: 12000 },
@@ -12,10 +12,10 @@ const talentByType = [
 ];
 
 const talentByCity = [
-  { name: 'Sofia', value: 65, color: '#8884d8' },
-  { name: 'Plovdiv', value: 15, color: '#82ca9d' },
-  { name: 'Varna', value: 12, color: '#ffc658' },
-  { name: 'Burgas', value: 8, color: '#ff7300' },
+  { name: 'Sofia', value: 65, color: '#000000' },
+  { name: 'Plovdiv', value: 15, color: '#404040' },
+  { name: 'Varna', value: 12, color: '#808080' },
+  { name: 'Burgas', value: 8, color: '#C0C0C0' },
 ];
 
 const universities = [
@@ -30,16 +30,22 @@ const TalentSnapshot = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-roboto-slab">Tech Talent Snapshot</CardTitle>
+        <CardTitle className="font-inter">Tech Talent Snapshot</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
           <h4 className="font-semibold mb-4">Talent by Specialization</h4>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={talentByType} layout="horizontal">
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={talentByType} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" />
-              <YAxis dataKey="type" type="category" width={100} />
+              <XAxis 
+                dataKey="type" 
+                angle={-45} 
+                textAnchor="end" 
+                height={80}
+                fontSize={12}
+              />
+              <YAxis />
               <Tooltip formatter={(value) => [`${value}`, 'Professionals']} />
               <Bar dataKey="count" fill="hsl(var(--primary))" />
             </BarChart>
@@ -64,6 +70,7 @@ const TalentSnapshot = () => {
                   ))}
                 </Pie>
                 <Tooltip formatter={(value) => [`${value}%`, 'Share']} />
+                <Legend />
               </PieChart>
             </ResponsiveContainer>
           </div>

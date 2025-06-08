@@ -21,7 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'pixelify': ['Pixelify Sans', 'sans-serif'],
-				'roboto-slab': ['Roboto Slab', 'serif'],
+				'doto': ['Doto', 'sans-serif'],
 				'inter': ['Inter', 'sans-serif'],
 			},
 			colors: {

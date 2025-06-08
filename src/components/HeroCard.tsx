@@ -1,11 +1,14 @@
+
 import { Card, CardContent } from "@/components/ui/card";
+
 const HeroCard = () => {
-  return <Card className="h-full bg-gradient-to-br from-primary to-gray-800 text-primary-foreground">
+  return (
+    <Card className="h-full bg-gradient-to-br from-primary to-gray-800 text-primary-foreground">
       <CardContent className="p-8 h-full flex flex-col justify-center">
-        <h1 className="font-pixelify text-4xl font-bold mb-4 leading-tight lg:text-2xl">
+        <h1 className="font-doto text-4xl font-bold mb-4 leading-tight lg:text-2xl">
           StartupBG.com
         </h1>
-        <p className="font-roboto-slab text-xl lg:text-2xl mb-6 opacity-90">
+        <p className="font-inter text-xl lg:text-2xl mb-6 opacity-90">
           The State of the Bulgarian Startup Ecosystem
         </p>
         <div className="space-y-2 text-sm opacity-80">
@@ -18,6 +21,8 @@ const HeroCard = () => {
           </p>
         </div>
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };
+
 export default HeroCard;

@@ -19,7 +19,7 @@ const DiversityCard = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-roboto-slab">Diversity in Startups</CardTitle>
+        <CardTitle className="font-inter">Diversity in Startups</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
