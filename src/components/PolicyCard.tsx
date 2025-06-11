@@ -1,7 +1,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { AppButton } from "@/components/ui/app-button";
+import { Landmark } from "lucide-react";
 
 const policies = [
   {
@@ -48,13 +49,14 @@ const getStatusColor = (status: string) => {
 const PolicyCard = () => {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center space-x-2">
+        <Landmark className="h-5 w-5 text-primary" />
         <CardTitle className="font-roboto-slab">Government & Policy</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {policies.map((policy, index) => (
-            <div key={index} className="flex items-start justify-between p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+            <div key={index} className="flex items-start justify-between p-4 rounded-lg border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent">
               <div className="space-y-1 flex-1">
                 <div className="flex items-center space-x-2">
                   <h4 className="font-semibold">{policy.title}</h4>
@@ -65,9 +67,9 @@ const PolicyCard = () => {
                 <p className="text-sm text-muted-foreground">{policy.description}</p>
                 <p className="text-xs text-muted-foreground">Introduced: {policy.year}</p>
               </div>
-              <Button variant="ghost" size="sm" className="rounded-full ml-4">
+              <AppButton variant="ghost" size="sm" className="ml-4">
                 Learn More
-              </Button>
+              </AppButton>
             </div>
           ))}
         </div>

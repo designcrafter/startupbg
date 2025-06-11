@@ -61,7 +61,7 @@ const TimelineCard = () => {
         <div className="flex overflow-x-auto pb-4 space-x-6">
           {timelineEvents.map((event, index) => (
             <div key={index} className="flex-shrink-0 w-64">
-              <div className="bg-muted rounded-lg p-4 h-full">
+              <div className="border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent rounded-lg p-4 h-full">
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-bold text-primary">{event.year}</span>
                   <Badge className={getTypeColor(event.type)}>{event.type}</Badge>

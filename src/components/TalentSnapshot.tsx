@@ -12,6 +12,41 @@ const talentByType = [
   { type: 'Data Science', count: 1800 },
 ];
 
+const regionalHubs = [
+  { 
+    name: 'Sofia', 
+    description: 'The capital and main tech hub',
+    logo: "/hub-logos/sofia.png",
+    startups: '500+',
+    coworking: '25+',
+    events: '150+/year'
+  },
+  { 
+    name: 'Plovdiv', 
+    description: 'Growing regional center',
+    logo: "/hub-logos/plovdiv.png",
+    startups: '120+',
+    coworking: '8+',
+    events: '40+/year'
+  },
+  { 
+    name: 'Varna', 
+    description: 'Coastal tech hub',
+    logo: "/hub-logos/varna.png",
+    startups: '80+',
+    coworking: '6+',
+    events: '30+/year'
+  },
+  { 
+    name: 'Burgas', 
+    description: 'Emerging tech scene',
+    logo: "/hub-logos/burgas.png",
+    startups: '45+',
+    coworking: '4+',
+    events: '20+/year'
+  },
+];
+
 const talentByCity = [
   { name: 'Sofia', value: 65, color: '#1e40af' },
   { name: 'Plovdiv', value: 15, color: '#3b82f6' },
@@ -20,11 +55,31 @@ const talentByCity = [
 ];
 
 const universities = [
-  "Sofia University",
-  "Technical University of Sofia",
-  "University of Plovdiv",
-  "Technical University of Varna",
-  "New Bulgarian University"
+  {
+    name: "Sofia University",
+    logo: "/university-logos/sofia-uni.png",
+    languages: ["English", "Bulgarian", "German"]
+  },
+  {
+    name: "Technical University of Sofia",
+    logo: "/university-logos/tech-uni-sofia.png",
+    languages: ["English", "Bulgarian"]
+  },
+  {
+    name: "University of Plovdiv",
+    logo: "/university-logos/plovdiv-uni.png",
+    languages: ["English", "Bulgarian", "French"]
+  },
+  {
+    name: "Technical University of Varna",
+    logo: "/university-logos/tech-uni-varna.png",
+    languages: ["English", "Bulgarian"]
+  },
+  {
+    name: "New Bulgarian University",
+    logo: "/university-logos/new-bg-uni.png",
+    languages: ["English", "Bulgarian", "Spanish"]
+  }
 ];
 
 const TalentSnapshot = () => {
@@ -50,7 +105,12 @@ const TalentSnapshot = () => {
                 fontSize={12}
               />
               <YAxis />
-              <Tooltip formatter={(value) => [`${value}`, 'Professionals']} />
+              <Tooltip 
+                formatter={(value) => [`${value}`, 'Professionals']} 
+                contentStyle={{ backgroundColor: '#f8f9fa', borderColor: '#e9ecef' }}
+                itemStyle={{ color: '#495057' }}
+                cursor={{ fill: '#f1f3f5' }}
+              />
               <Bar dataKey="count" fill="#1e40af" />
             </BarChart>
           </ResponsiveContainer>
@@ -74,7 +134,11 @@ const TalentSnapshot = () => {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value) => [`${value}%`, 'Share']} />
+                  <Tooltip 
+                    formatter={(value) => [`${value}%`, 'Share']} 
+                    contentStyle={{ backgroundColor: '#f8f9fa', borderColor: '#e9ecef' }}
+                    itemStyle={{ color: '#495057' }}
+                  />
                   <Legend wrapperStyle={{ paddingTop: '20px' }} />
                 </PieChart>
               </ResponsiveContainer>
@@ -83,21 +147,36 @@ const TalentSnapshot = () => {
           
           <div>
             <h4 className="font-semibold mb-4">Top Universities</h4>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 gap-2 mt-4">
               {universities.map((university, index) => (
-                <div key={index} className="flex items-center gap-3 py-2 px-3 bg-muted rounded-md">
-                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <div className="w-4 h-4 bg-blue-600 rounded-sm"></div>
+                <div key={index} className="flex flex-col gap-1 py-2 px-3 border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent rounded-md">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-card rounded-md flex items-center justify-center overflow-hidden relative border border-gray-200">
+                      {/* Using image with fallback to initials */}
+                      <div className="w-full h-full flex items-center justify-center">
+                        <img 
+                          src={university.logo} 
+                          alt={`${university.name} logo`} 
+                          className="max-w-full max-h-full object-cover absolute inset-0 m-auto"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.onerror = null;
+                            target.style.display = 'none';
+                            target.nextElementSibling?.classList.remove('hidden');
+                          }}
+                        />
+                        <div className="w-8 h-8 bg-blue-50 rounded-md flex items-center justify-center text-xs text-blue-800 font-medium hidden absolute inset-0 m-auto">
+                          {university.name.substring(0, 2).toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="text-sm font-medium truncate max-w-[180px]">{university.name}</span>
                   </div>
-                  <span className="text-sm">{university}</span>
+
                 </div>
               ))}
             </div>
-            <div className="mt-4 p-3 bg-blue-50 rounded-md">
-              <p className="text-sm text-blue-800">
-                <strong>3,200</strong> STEM graduates annually
-              </p>
-            </div>
+
           </div>
         </div>
       </CardContent>

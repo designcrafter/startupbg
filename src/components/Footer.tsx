@@ -1,5 +1,6 @@
 
-import { Button } from "@/components/ui/button";
+import { AppButton } from "@/components/ui/app-button";
+import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,24 +8,28 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-wrap gap-4">
-            <Button variant="ghost" size="sm" className="rounded-full">
-              Full Source List
-            </Button>
-            <Button variant="ghost" size="sm" className="rounded-full">
-              Submit a Correction
-            </Button>
-            <Button variant="ghost" size="sm" className="rounded-full">
+            <AppButton variant="ghost" size="sm" asChild>
+              <RouterLink to="/sources">
+                Full Source List
+              </RouterLink>
+            </AppButton>
+            <AppButton variant="ghost" size="sm" asChild>
+              <RouterLink to="/correction">
+                Submit a Correction
+              </RouterLink>
+            </AppButton>
+            <AppButton variant="ghost" size="sm">
               Data Methodology
-            </Button>
+            </AppButton>
           </div>
           
           <div className="text-sm text-muted-foreground">
             Built by{" "}
-            <Button variant="link" className="p-0 h-auto font-medium" asChild>
+            <AppButton variant="ghost" className="p-0 h-auto font-medium" asChild>
               <a href="#" className="text-primary hover:underline">
                 Vasil Nedelchev
               </a>
-            </Button>
+            </AppButton>
           </div>
         </div>
         

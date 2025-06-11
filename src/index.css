@@ -7,10 +7,10 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 0 0% 98%; /* Changed to very light grey */
     --foreground: 0 0% 3.9%;
 
-    --card: 0 0% 100%;
+    --card: 0 0% 100%; /* Keeping card background white */
     --card-foreground: 0 0% 3.9%;
 
     --popover: 0 0% 100%;

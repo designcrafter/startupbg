@@ -6,7 +6,7 @@ const HeroCard = () => {
     <Card className="h-full bg-gradient-to-br from-primary to-gray-800 text-primary-foreground">
       <CardContent className="p-8 h-full flex flex-col justify-center">
         <h1 className="font-doto text-4xl font-bold mb-4 leading-tight lg:text-2xl">
-          StartupBG.com
+          startupbg.com
         </h1>
         <p className="font-inter text-xl lg:text-2xl mb-6 opacity-90">
           The State of the Bulgarian Startup Ecosystem

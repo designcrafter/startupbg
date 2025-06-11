@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Map } from "lucide-react";
 
 const cities = [
   {
@@ -8,7 +9,7 @@ const cities = [
     coworking: "25+",
     events: "150+/year",
     description: "The capital and main tech hub",
-    highlight: true
+    logo: "/hub-logos/sofia.png"
   },
   {
     name: "Plovdiv",
@@ -16,7 +17,7 @@ const cities = [
     coworking: "8+",
     events: "40+/year",
     description: "Growing regional center",
-    highlight: false
+    logo: "/hub-logos/plovdiv.png"
   },
   {
     name: "Varna",
@@ -24,7 +25,7 @@ const cities = [
     coworking: "6+",
     events: "30+/year",
     description: "Coastal tech hub",
-    highlight: false
+    logo: "/hub-logos/varna.png"
   },
   {
     name: "Burgas",
@@ -32,58 +33,78 @@ const cities = [
     coworking: "4+",
     events: "20+/year",
     description: "Emerging tech scene",
-    highlight: false
+    logo: "/hub-logos/burgas.png"
   }
 ];
 
 const RegionalHubs = () => {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center space-x-2">
+        <Map className="h-5 w-5 text-primary" />
         <CardTitle className="font-roboto-slab">Regional Hubs</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {cities.map((city, index) => (
             <div 
               key={index} 
-              className={`p-4 rounded-lg transition-colors ${
-                city.highlight 
-                  ? 'bg-primary text-primary-foreground' 
-                  : 'bg-muted/50 hover:bg-muted'
-              }`}
+              className="rounded-lg border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent overflow-hidden flex flex-col md:flex-row"
             >
-              <div className="flex items-start justify-between">
-                <div className="space-y-2">
+              {/* Top/Left side - Image */}
+              <div className="w-full md:w-2/5 h-40 md:h-auto relative">
+                <div className="absolute inset-0 overflow-hidden">
+                  {/* Using image with fallback to city name */}
+                  <img 
+                    src={city.logo} 
+                    alt={`${city.name} landmark`} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.style.display = 'none';
+                      target.nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                  <div className="w-full h-full bg-blue-50 flex items-center justify-center text-base text-blue-800 font-medium hidden">
+                    {city.name}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bottom/Right side - Content */}
+              <div className="w-full md:w-3/5 p-4">
+                <div className="mb-3">
                   <h4 className="font-semibold text-lg">{city.name}</h4>
-                  <p className={`text-sm ${city.highlight ? 'opacity-90' : 'text-muted-foreground'}`}>
+                  <p className="text-sm text-muted-foreground">
                     {city.description}
                   </p>
                 </div>
-              </div>
-              <div className="grid grid-cols-3 gap-4 mt-4">
-                <div className="text-center">
-                  <div className={`font-bold ${city.highlight ? 'text-primary-foreground' : 'text-primary'}`}>
-                    {city.startups}
+                
+                <div className="grid grid-cols-3 gap-2 mt-4">
+                  <div className="text-center">
+                    <div className="font-bold text-primary">
+                      {city.startups}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      Startups
+                    </div>
                   </div>
-                  <div className={`text-xs ${city.highlight ? 'opacity-75' : 'text-muted-foreground'}`}>
-                    Startups
+                  <div className="text-center">
+                    <div className="font-bold text-primary">
+                      {city.coworking}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      Coworking
+                    </div>
                   </div>
-                </div>
-                <div className="text-center">
-                  <div className={`font-bold ${city.highlight ? 'text-primary-foreground' : 'text-primary'}`}>
-                    {city.coworking}
-                  </div>
-                  <div className={`text-xs ${city.highlight ? 'opacity-75' : 'text-muted-foreground'}`}>
-                    Coworking
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className={`font-bold ${city.highlight ? 'text-primary-foreground' : 'text-primary'}`}>
-                    {city.events}
-                  </div>
-                  <div className={`text-xs ${city.highlight ? 'opacity-75' : 'text-muted-foreground'}`}>
-                    Events
+                  <div className="text-center">
+                    <div className="font-bold text-primary">
+                      {city.events}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      Events
+                    </div>
                   </div>
                 </div>
               </div>

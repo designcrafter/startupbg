@@ -1,7 +1,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { AppButton } from "@/components/ui/app-button";
 import { Badge } from "@/components/ui/badge";
+import { Brain } from "lucide-react";
 
 const deepTechProjects = [
   {
@@ -39,13 +40,14 @@ const getStatusColor = (status: string) => {
 const DeepTechCard = () => {
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center space-x-2">
+        <Brain className="h-5 w-5 text-primary" />
         <CardTitle className="font-roboto-slab">Deep Tech & AI</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {deepTechProjects.map((project, index) => (
-            <div key={index} className="p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+            <div key={index} className="p-4 rounded-lg border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent">
               <div className="flex items-start justify-between mb-2">
                 <div className="space-y-1 flex-1">
                   <div className="flex items-center space-x-2">
@@ -60,9 +62,9 @@ const DeepTechCard = () => {
                     <span>Year: {project.year}</span>
                   </div>
                 </div>
-                <Button variant="ghost" size="sm" className="rounded-full ml-4">
+                <AppButton variant="ghost" size="sm" className="ml-4">
                   Learn More
-                </Button>
+                </AppButton>
               </div>
             </div>
           ))}

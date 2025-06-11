@@ -47,15 +47,15 @@ const StatsGrid = () => {
       {statsData.map((stat, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
           <CardHeader className="pb-2">
-            <CardTitle className="font-inter text-lg flex items-center gap-2">
+            <CardTitle className="font-inter text-sm flex items-center gap-2">
               <BarChart className="h-4 w-4" />
               {stat.title}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-1">
-              <div className="text-3xl font-bold text-primary">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{stat.subtitle}</div>
+              <div className="text-2xl font-bold text-primary">{stat.value}</div>
+              <div className="text-xs text-muted-foreground">{stat.subtitle}</div>
               <div className="text-xs text-green-600 font-medium">{stat.trend}</div>
             </div>
           </CardContent>
