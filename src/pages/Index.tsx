@@ -16,8 +16,8 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <>
+      <div className="container mx-auto px-4 py-4">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           <div className="lg:col-span-1">
@@ -63,7 +63,7 @@ const Index = () => {
       </div>
       
       <Footer />
-    </div>
+    </>
   );
 };
 

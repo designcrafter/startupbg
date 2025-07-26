@@ -55,7 +55,7 @@ const StartupRefluxCard = () => {
     <Card className="col-span-full">
       <CardHeader className="flex flex-row items-center space-x-2">
         <ArrowUpDown className="h-5 w-5 text-primary" />
-        <CardTitle className="font-roboto-slab">Startup Reflux: Pros & Cons</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Startup Reflux: Pros & Cons</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid md:grid-cols-2 gap-6">

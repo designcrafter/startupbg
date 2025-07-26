@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StartupBG Test Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0f172a;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .info {
+      background-color: #e8f4fd;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+    button {
+      background-color: #0f172a;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #path-info {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 3px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>StartupBG Dashboard Test Page</h1>
+    <p class="success">✅ If you can see this page, Netlify is correctly serving static files!</p>
+    
+    <div class="info">
+      <h3>Current URL Information:</h3>
+      <div id="path-info">Loading...</div>
+      <button onclick="testFetch()">Test Fetch API</button>
+      <div id="fetch-result"></div>
+    </div>
+    
+    <h3>Next Steps:</h3>
+    <ol>
+      <li>Try accessing the main app at the root URL</li>
+      <li>Check browser console for any JavaScript errors</li>
+      <li>Verify that the _redirects file is properly configured</li>
+      <li>Check Netlify deployment logs for build errors</li>
+    </ol>
+  </div>
+
+  <script>
+    // Display current URL information
+    document.getElementById('path-info').innerHTML = 
+      'Protocol: ' + window.location.protocol + '<br>' +
+      'Host: ' + window.location.host + '<br>' +
+      'Pathname: ' + window.location.pathname + '<br>' +
+      'Full URL: ' + window.location.href;
+    
+    // Test fetch API
+    function testFetch() {
+      document.getElementById('fetch-result').innerHTML = 'Testing fetch...';
+      fetch('/manifest.json')
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok');
+        })
+        .then(data => {
+          document.getElementById('fetch-result').innerHTML = 
+            '<p class="success">✅ Successfully fetched manifest.json!</p>' +
+            '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+        })
+        .catch(error => {
+          document.getElementById('fetch-result').innerHTML = 
+            '<p style="color:red">❌ Error fetching manifest.json: ' + error.message + '</p>';
+        });
+    }
+  </script>
+</body>
+</html>

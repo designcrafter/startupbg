@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 
 const timelineEvents = [
   {
-    year: "2005",
+    year: "2002",
     event: "Telerik Founded",
     description: "Major software company establishment",
     type: "milestone"
@@ -16,10 +16,10 @@ const timelineEvents = [
     type: "exit"
   },
   {
-    year: "2018",
-    event: "Startup Visa Program",
-    description: "Government initiative launched",
-    type: "policy"
+    year: "2015",
+    event: "Sofia Tech Park",
+    description: "57,000 m² innovation hub opens",
+    type: "milestone"
   },
   {
     year: "2021",
@@ -28,13 +28,19 @@ const timelineEvents = [
     type: "milestone"
   },
   {
+    year: "2022",
+    event: "Startup Visa Program",
+    description: "Government initiative launched",
+    type: "policy"
+  },
+  {
     year: "2023",
-    event: "€1B AI Investment",
+    event: "€90M AI Investment",
     description: "BRAIN++ AI Factory announced",
     type: "investment"
   },
   {
-    year: "2024",
+    year: "2023",
     event: "VCC Structure",
     description: "Venture capital company law",
     type: "policy"
@@ -55,7 +61,7 @@ const TimelineCard = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-roboto-slab">Ecosystem Timeline</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Ecosystem Timeline</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex overflow-x-auto pb-4 space-x-6">

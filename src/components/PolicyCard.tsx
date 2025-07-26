@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AppButton } from "@/components/ui/app-button";
@@ -7,33 +6,38 @@ import { Landmark } from "lucide-react";
 const policies = [
   {
     title: "Startup Visa Program",
-    year: "2018",
+    year: "2022",
     description: "Fast-track visas for international entrepreneurs",
-    status: "Active"
+    status: "Active",
+    link: "https://www.mig.government.bg/upcoming-events/the-ministry-of-innovation-and-growth-will-issue-startup-visa-for-high-tech-and-innovative-projects/?lang=en"
   },
   {
     title: "VCC Structure",
-    year: "2024",
+    year: "2023",
     description: "Venture Capital Company legal framework",
-    status: "New"
+    status: "Active",
+    link: "https://amcham.bg/2024/05/13/investing-in-a-variable-capital-company-in-bulgaria/"
   },
   {
     title: "R&D Tax Incentives",
     year: "2020",
-    description: "Tax benefits for research and development",
-    status: "Active"
+    description: "Up to 30% tax deduction for research",
+    status: "Active",
+    link: "https://www.mi.government.bg/en/general/deklarirane-i-izplashtane-na-korporativen-danak-godishna-dan/"
   },
   {
     title: "Digital Nomad Visa",
     year: "2021",
     description: "Remote work program for tech professionals",
-    status: "Active"
+    status: "Active",
+    link: "https://rapidesim.com/blogs/news/everything-you-need-to-know-about-bulgarias-digital-nomad-visa-in-2025"
   },
   {
-    title: "Innovation Fund",
-    year: "2022",
-    description: "€50M government-backed startup funding",
-    status: "Active"
+    title: "EU Tech Grants",
+    year: "2023",
+    description: "€250M through 2027 for innovation",
+    status: "Active",
+    link: "https://national-policies.eacea.ec.europa.eu/youthwiki/chapters/bulgaria/39-start-up-funding-for-young-entrepreneurs"
   }
 ];
 
@@ -51,7 +55,7 @@ const PolicyCard = () => {
     <Card>
       <CardHeader className="flex flex-row items-center space-x-2">
         <Landmark className="h-5 w-5 text-primary" />
-        <CardTitle className="font-roboto-slab">Government & Policy</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Government & Policy</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -67,8 +71,10 @@ const PolicyCard = () => {
                 <p className="text-sm text-muted-foreground">{policy.description}</p>
                 <p className="text-xs text-muted-foreground">Introduced: {policy.year}</p>
               </div>
-              <AppButton variant="ghost" size="sm" className="ml-4">
-                Learn More
+              <AppButton variant="secondary" size="sm" className="ml-4" asChild>
+                <a href={policy.link} target="_blank" rel="noopener noreferrer">
+                  Learn More
+                </a>
               </AppButton>
             </div>
           ))}

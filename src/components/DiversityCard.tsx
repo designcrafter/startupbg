@@ -1,33 +1,37 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Heart } from 'lucide-react';
+import { Heart, ExternalLink } from 'lucide-react';
 
 const diversityData = [
-  { category: 'Bulgaria', women: 22, eu: 17 },
-  { category: 'EU Average', women: 17, eu: 17 },
+  { category: 'Sofia', women: 25.4, eu: 9.6 },
+  { category: 'EU Average', women: 9.6, eu: 9.6 },
 ];
 
 const supportingOrgs = [
   {
     name: "Women in Tech Bulgaria",
-    logo: "/supporting-orgs/Women-in-Tech-Bulgaria.png"
+    logo: "/supporting-orgs/Women-in-Tech-Bulgaria.png",
+    website: "https://women-in-tech.bg/"
   },
   {
     name: "Ladies that UX Sofia",
-    logo: "/supporting-orgs/Ladies-that-UX-Sofia.png"
+    logo: "/supporting-orgs/Ladies-that-UX-Sofia.png",
+    website: "https://ladiesthatux.com/"
   },
   {
     name: "Django Girls Sofia",
-    logo: "/supporting-orgs/Django-Girls-Sofia.png"
+    logo: "/supporting-orgs/Django-Girls-Sofia.png",
+    website: "https://djangogirls.org/en/sofia"
   },
   {
     name: "Women Techmakers",
-    logo: "/supporting-orgs/Women-Techmakers.png"
+    logo: "/supporting-orgs/Women-Techmakers.png",
+    website: "https://www.womentechmakers.com"
   },
   {
     name: "Female Founders Network",
-    logo: ""
+    logo: "",
+    website: "https://www.femalefounders.org"
   }
 ];
 
@@ -35,7 +39,7 @@ const DiversityCard = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-inter flex items-center gap-2">
+        <CardTitle className="font-inter flex items-center gap-2 uppercase">
           <Heart className="h-5 w-5" />
           Diversity in Startups
         </CardTitle>
@@ -84,7 +88,15 @@ const DiversityCard = () => {
                       </div>
                     </div>
                   </div>
-                  <span className="text-sm font-medium truncate max-w-[180px]">{org.name}</span>
+                  <span className="text-sm font-medium truncate max-w-[140px]">{org.name}</span>
+                  <a 
+                    href={org.website} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-muted-foreground hover:text-primary transition-colors ml-auto"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -93,7 +105,7 @@ const DiversityCard = () => {
         
         <div className="p-4 bg-blue-50 rounded-md">
           <p className="text-sm text-blue-800">
-            <strong>Bulgaria leads CEE</strong> in women-led startup percentage, with 22% vs 17% EU average
+            <strong>Sofia leads Europe</strong> in women-led startup percentage, with 25.4% vs 9.6% EU average
           </p>
         </div>
       </CardContent>

@@ -1,14 +1,13 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { Users } from 'lucide-react';
+import { Users, ExternalLink } from 'lucide-react';
 
 const talentByType = [
   { type: 'Frontend Dev', count: 12000 },
   { type: 'Backend Dev', count: 15000 },
-  { type: 'DevOps', count: 3500 },
-  { type: 'QA', count: 5500 },
-  { type: 'AI/ML', count: 2000 },
+  { type: 'DevOps', count: 2000 },
+  { type: 'QA', count: 9000 },
+  { type: 'AI/ML', count: 1500 },
   { type: 'Data Science', count: 1800 },
 ];
 
@@ -48,37 +47,42 @@ const regionalHubs = [
 ];
 
 const talentByCity = [
-  { name: 'Sofia', value: 65, color: '#1e40af' },
-  { name: 'Plovdiv', value: 15, color: '#3b82f6' },
-  { name: 'Varna', value: 12, color: '#60a5fa' },
-  { name: 'Burgas', value: 8, color: '#93c5fd' },
+  { name: 'Sofia', value: 86, color: '#1e40af' },
+  { name: 'Plovdiv', value: 8, color: '#3b82f6' },
+  { name: 'Varna', value: 4, color: '#60a5fa' },
+  { name: 'Burgas', value: 2, color: '#93c5fd' },
 ];
 
 const universities = [
   {
     name: "Sofia University",
     logo: "/university-logos/sofia-uni.png",
-    languages: ["English", "Bulgarian", "German"]
+    languages: ["English", "Bulgarian", "German"],
+    website: "https://uni-sofia.bg/index.php/eng"
   },
   {
     name: "Technical University of Sofia",
     logo: "/university-logos/tech-uni-sofia.png",
-    languages: ["English", "Bulgarian"]
+    languages: ["English", "Bulgarian"],
+    website: "https://tu-sofia.bg/?lang=en"
   },
   {
     name: "University of Plovdiv",
     logo: "/university-logos/plovdiv-uni.png",
-    languages: ["English", "Bulgarian", "French"]
+    languages: ["English", "Bulgarian", "French"],
+    website: "https://uni-plovdiv.bg/en/"
   },
   {
     name: "Technical University of Varna",
     logo: "/university-logos/tech-uni-varna.png",
-    languages: ["English", "Bulgarian"]
+    languages: ["English", "Bulgarian"],
+    website: "https://fs.tu-varna.bg/"
   },
   {
     name: "New Bulgarian University",
     logo: "/university-logos/new-bg-uni.png",
-    languages: ["English", "Bulgarian", "Spanish"]
+    languages: ["English", "Bulgarian", "Spanish"],
+    website: "https://nbu.bg/en"
   }
 ];
 
@@ -86,7 +90,7 @@ const TalentSnapshot = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-inter flex items-center gap-2">
+        <CardTitle className="font-inter flex items-center gap-2 uppercase">
           <Users className="h-5 w-5" />
           Tech Talent Snapshot
         </CardTitle>
@@ -170,9 +174,16 @@ const TalentSnapshot = () => {
                         </div>
                       </div>
                     </div>
-                    <span className="text-sm font-medium truncate max-w-[180px]">{university.name}</span>
+                    <span className="text-sm font-medium truncate max-w-[140px]">{university.name}</span>
+                    <a 
+                      href={university.website} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-muted-foreground hover:text-primary transition-colors ml-auto"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
                   </div>
-
                 </div>
               ))}
             </div>

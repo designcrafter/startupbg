@@ -1,9 +1,8 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { AppButton } from "@/components/ui/app-button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
 import { Rocket } from "lucide-react";
+
 
 // Startups ordered by funding amount according to research document
 const startups = [
@@ -149,6 +148,7 @@ const startups = [
   }
 ];
 
+// Function to get category colors
 const getCategoryColor = (category: string) => {
   const colors: { [key: string]: string } = {
     "AI": "bg-purple-50 text-purple-800 border-purple-200",
@@ -168,61 +168,54 @@ const getCategoryColor = (category: string) => {
   return colors[category] || "bg-gray-50 text-gray-800 border-gray-200";
 };
 
-const StartupsGrid = () => {
-  // Show only top 7 startups by funding in the main view
-  const topStartups = startups.slice(0, 7);
-  
+const Startups = () => {
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex flex-row items-center space-x-2">
-          <Rocket className="h-5 w-5 text-primary" />
-          <CardTitle className="uppercase">Top Startups by Funding</CardTitle>
+    <div className="min-h-screen bg-background">
+
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">Top Startups by Funding</h1>
+          <p className="text-muted-foreground mt-1">Leading Bulgarian startups ranked by funding raised</p>
         </div>
-      </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 gap-4">
-          {topStartups.map((startup, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {startups.map((startup, index) => (
             <Card key={index} className="overflow-hidden border border-muted hover:border-muted-foreground/20 transition-colors shadow-none">
-              <div className="p-4 flex items-center gap-4 relative">
-                <div className="absolute top-4 right-4">
-                  <AppButton size="sm" variant="secondary" asChild>
-                    <a href={startup.website} target="_blank" rel="noopener noreferrer">
-                      Visit Website
-                    </a>
-                  </AppButton>
-                </div>
-                <div className="w-16 h-16 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden border border-gray-200">
-                  <img
-                    src={startup.image}
-                    alt={`${startup.name} logo`}
-                    className="max-h-full max-w-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 space-y-1 pr-32">
-                  <div className="flex items-center space-x-2">
-                    <h3 className="font-semibold text-base">{startup.name}</h3>
-                    <Badge className={getCategoryColor(startup.category)}>
-                      {startup.category}
-                    </Badge>
+              <CardContent className="p-5">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="w-16 h-16 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden border border-gray-200">
+                    <img
+                      src={startup.image}
+                      alt={`${startup.name} logo`}
+                      className="max-h-full max-w-full object-cover"
+                    />
                   </div>
-                  <p className="text-sm text-muted-foreground">{startup.description}</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg mb-1">{startup.name}</h3>
+                    <div className="flex flex-wrap gap-1 mt-2">
+                      <Badge className={getCategoryColor(startup.category)}>
+                        {startup.category}
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                
+                <p className="text-sm text-muted-foreground mb-4">
+                  {startup.description}
+                </p>
+                
+                <AppButton size="sm" variant="secondary" asChild className="w-full">
+                  <a href={startup.website} target="_blank" rel="noopener noreferrer">
+                    Visit Website
+                  </a>
+                </AppButton>
+              </CardContent>
             </Card>
           ))}
         </div>
-        
-        <div className="mt-6 flex justify-center">
-          <AppButton variant="ghost" className="w-full" asChild>
-            <Link to="/startups">
-              See All Startups
-            </Link>
-          </AppButton>
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 
-export default StartupsGrid;
+export default Startups;

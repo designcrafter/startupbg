@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AppButton } from "@/components/ui/app-button";
 import { Badge } from "@/components/ui/badge";
@@ -10,21 +9,24 @@ const deepTechProjects = [
     description: "ETH Zurich Institute for Computer Science and AI",
     funding: "€30M initial",
     status: "Active",
-    year: "2021"
+    year: "2021",
+    link: "https://insait.ai/google-expands-its-partnership-with-insait/"
   },
   {
     name: "BRAIN++ AI Factory",
-    description: "€1B investment in AI research and development",
-    funding: "€1B",
+    description: "Investment in AI research and development",
+    funding: "€90M",
     status: "Announced",
-    year: "2023"
+    year: "2023",
+    link: "https://insait.ai/bulgaria-will-have-its-own-ai-factory-a-project-for-90m-eur/"
   },
   {
     name: "Sofia Tech Park",
-    description: "Innovation hub for tech companies and startups",
+    description: "57,000 m² innovation hub for tech companies",
     funding: "€160M",
     status: "Active",
-    year: "2019"
+    year: "2015",
+    link: "https://investsofia.com/en/start-up/"
   }
 ];
 
@@ -42,7 +44,7 @@ const DeepTechCard = () => {
     <Card>
       <CardHeader className="flex flex-row items-center space-x-2">
         <Brain className="h-5 w-5 text-primary" />
-        <CardTitle className="font-roboto-slab">Deep Tech & AI</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Deep Tech & AI</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -62,8 +64,10 @@ const DeepTechCard = () => {
                     <span>Year: {project.year}</span>
                   </div>
                 </div>
-                <AppButton variant="ghost" size="sm" className="ml-4">
-                  Learn More
+                <AppButton variant="secondary" size="sm" className="ml-4" asChild>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    Learn More
+                  </a>
                 </AppButton>
               </div>
             </div>

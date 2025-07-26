@@ -7,7 +7,14 @@ import { AppButton } from "@/components/ui/app-button";
 import { AlertCircle, CheckCircle, Send } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Footer from "@/components/Footer";
-import InnerPageHeader from "@/components/InnerPageHeader";
+
+
+// FORMSPREE SETUP INSTRUCTIONS:
+// 1. Go to https://formspree.io and sign up for a free account
+// 2. Create a new form and get your form ID (it will look like "xrgjaezb")
+// 3. Replace "YOUR_FORM_ID" in the formspreeEndpoint below with your actual form ID
+// 4. Formspree free tier allows 50 submissions per month, which should be enough for most small projects
+// 5. You'll receive form submissions directly to your email without any server setup
 
 const Correction = () => {
   const [formData, setFormData] = useState({
@@ -38,30 +45,29 @@ const Correction = () => {
     setFormState("submitting");
     
     try {
-      // In a real implementation, this would be an API call to a backend service
-      // For now, we'll simulate sending an email with a timeout
+      // Use Formspree to handle the form submission
+      const formspreeEndpoint = "https://formspree.io/f/meokgzjq";
       
-      // Construct email body
-      const emailSubject = `StartupBG Dashboard Correction: ${formData.section || 'General'}`;
-      const emailBody = `
-Name: ${formData.name}
-Email: ${formData.email}
-Section: ${formData.section || 'General'}
-
-Correction:
-${formData.correction}
-      `;
+      const formspreeData = {
+        name: formData.name,
+        email: formData.email,
+        section: formData.section || 'General',
+        correction: formData.correction,
+        _subject: `StartupBG Dashboard Correction: ${formData.section || 'General'}`
+      };
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formspreeData)
+      });
       
-      // In a real implementation, you would use a service like EmailJS, a serverless function, 
-      // or a backend API to send the email to vasil@designcrafter.co
-      
-      // For demonstration, we'll just log the email content
-      console.log("Email would be sent to: vasil@designcrafter.co");
-      console.log("Subject:", emailSubject);
-      console.log("Body:", emailBody);
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status: ${response.status}`);
+      }
       
       setFormState("success");
     } catch (error) {
@@ -97,14 +103,15 @@ ${formData.correction}
   
   return (
     <div className="min-h-screen bg-background">
-      <InnerPageHeader title="Submit a Correction" />
-      <div className="container mx-auto px-4">
+
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">Got ideas/fixes?</h1>
+          <p className="text-muted-foreground mt-1">Help me improve the dashboard by submitting idea or fix</p>
+        </div>
         <Card>
           <CardHeader>
-            <CardTitle className="font-inter flex items-center gap-2">
-              <Send className="h-5 w-5" />
-              Submit a Correction
-            </CardTitle>
           </CardHeader>
           <CardContent>
             {formState === "success" ? (
@@ -113,7 +120,7 @@ ${formData.correction}
                   <CheckCircle className="h-4 w-4 text-green-600" />
                   <AlertTitle className="text-green-800">Thank you for your submission!</AlertTitle>
                   <AlertDescription className="text-green-700">
-                    Your correction has been sent to our team. We appreciate your contribution to making the StartupBG Dashboard more accurate.
+                    Your idea/fix has been sent to our team. We appreciate your contribution to making the StartupBG Dashboard more accurate.
                   </AlertDescription>
                 </Alert>
                 <div className="flex justify-center mt-6">
@@ -122,11 +129,6 @@ ${formData.correction}
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <p className="text-muted-foreground">
-                  Help us improve the accuracy of the StartupBG Dashboard by submitting corrections or updates to any information displayed.
-                  Your feedback is valuable and will be reviewed by our team.
-                </p>
-                
                 {formState === "error" && (
                   <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
@@ -181,7 +183,7 @@ ${formData.correction}
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="correction">Correction Details <span className="text-red-500">*</span></Label>
+                  <Label htmlFor="correction">Idea/fix Details <span className="text-red-500">*</span></Label>
                   <Textarea 
                     id="correction" 
                     name="correction" 
@@ -207,7 +209,7 @@ ${formData.correction}
                     ) : (
                       <>
                         <Send className="h-4 w-4" />
-                        Submit Correction
+                        Send
                       </>
                     )}
                   </AppButton>

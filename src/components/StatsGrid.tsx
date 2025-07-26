@@ -10,32 +10,32 @@ const statsData = [
     trend: "+12% YoY"
   },
   {
-    title: "VC Raised (2024)",
-    value: "€45M",
+    title: "VC Raised",
+    value: "€264M",
     subtitle: "Total funding",
-    trend: "+8% vs 2023"
+    trend: "2023 data"
   },
   {
     title: "Unicorns",
     value: "2",
-    subtitle: "Telerik, Paymi",
+    subtitle: "Payhawk, Shelly Group",
     trend: "All-time"
   },
   {
     title: "Active VCs",
-    value: "15+",
-    subtitle: "Investment funds",
+    value: "10+",
+    subtitle: "Local VC funds",
     trend: "Operating"
   },
   {
     title: "Tech Workers",
-    value: "45K+",
+    value: "105K+",
     subtitle: "IT professionals",
     trend: "+15% YoY"
   },
   {
     title: "STEM Graduates",
-    value: "3.2K",
+    value: "42K",
     subtitle: "Annual output",
     trend: "2023 data"
   }
@@ -47,7 +47,7 @@ const StatsGrid = () => {
       {statsData.map((stat, index) => (
         <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
           <CardHeader className="pb-2">
-            <CardTitle className="font-inter text-sm flex items-center gap-2">
+            <CardTitle className="font-inter text-sm flex items-center gap-2 uppercase">
               <BarChart className="h-4 w-4" />
               {stat.title}
             </CardTitle>

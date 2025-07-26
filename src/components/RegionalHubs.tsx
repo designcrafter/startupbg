@@ -42,7 +42,7 @@ const RegionalHubs = () => {
     <Card>
       <CardHeader className="flex flex-row items-center space-x-2">
         <Map className="h-5 w-5 text-primary" />
-        <CardTitle className="font-roboto-slab">Regional Hubs</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Regional Hubs</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 gap-4">

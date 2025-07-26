@@ -6,29 +6,29 @@ import { Badge } from "@/components/ui/badge";
 const challenges = [
   {
     category: "Talent",
-    highlight: "30%",
-    issue: "Competitive hiring market and retention challenges",
+    highlight: "40%",
+    issue: "Acute skills shortage in tech roles",
     strategy: "Invest in training programs and competitive benefits",
     icon: Users
   },
   {
     category: "Funding",
-    highlight: "5x",
-    issue: "Limited late-stage capital and follow-on investment",
+    highlight: "$$$?",
+    issue: "Sharp drop-off in late-stage capital",
     strategy: "Build international investor relationships early",
     icon: Briefcase
   },
   {
     category: "Market",
-    highlight: "7M",
-    issue: "Small domestic market requires early global focus",
+    highlight: "Int’l?",
+    issue: "Small home market forces international expansion",
     strategy: "Plan international expansion from day one",
     icon: Globe
   },
   {
     category: "Regulatory",
-    highlight: "43rd",
-    issue: "Administrative complexity and compliance burden",
+    highlight: "8/yr",
+    issue: "Heavy admin burden: ~8 inspections/yr (17h each)",
     strategy: "Allocate resources for legal and regulatory support",
     icon: FileText
   }
@@ -39,7 +39,7 @@ const RedFlagsCard = () => {
     <Card>
       <CardHeader className="flex flex-row items-center space-x-2">
         <Flag className="h-5 w-5" />
-        <CardTitle className="font-roboto-slab">Red Flags</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Red Flags</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-muted-foreground text-sm">

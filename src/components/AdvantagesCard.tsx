@@ -35,7 +35,7 @@ const AdvantagesCard = () => {
     <Card>
       <CardHeader className="flex flex-row items-center space-x-2">
         <TrendingUp className="h-5 w-5" />
-        <CardTitle className="font-roboto-slab">Advantages</CardTitle>
+        <CardTitle className="font-roboto-slab uppercase">Advantages</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="mb-4 text-muted-foreground text-sm">

@@ -1,7 +1,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, ExternalLink } from 'lucide-react';
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { AppButton } from "@/components/ui/app-button";
 
 const yearlyFunding = [
   { year: '2020', amount: 25 },
@@ -22,27 +25,37 @@ const majorFunds = [
   {
     name: "LAUNCHub Ventures",
     logo: "/fund-logos/LAUNCHub.png",
-    languages: ["English", "Bulgarian", "Romanian", "Greek"]
+    languages: ["English", "Bulgarian", "Romanian", "Greek"],
+    size: "€74M",
+    website: "https://launchub.com"
   },
   {
     name: "Eleven Ventures",
     logo: "/fund-logos/11.png",
-    languages: ["English", "Bulgarian", "Romanian", "Serbian"]
+    languages: ["English", "Bulgarian", "Romanian", "Serbian"],
+    size: "€55M",
+    website: "https://11.me"
+  },
+  {
+    name: "Innovation Capital",
+    logo: "/fund-logos/Innovation.png",
+    languages: ["English", "Bulgarian"],
+    size: "€21.1M",
+    website: "https://innovationcapital.bg"
   },
   {
     name: "Vitosha Venture Partners",
     logo: "/fund-logos/Vitosha.png",
-    languages: ["English", "Bulgarian"]
+    languages: ["English", "Bulgarian"],
+    size: "€100M",
+    website: "https://vitosha.vc"
   },
   {
-    name: "BrightCap Ventures",
-    logo: "/fund-logos/Brightcap.png",
-    languages: ["English", "Bulgarian"]
-  },
-  {
-    name: "Sopharma Ventures",
-    logo: "/fund-logos/sopharma.png",
-    languages: ["English", "Bulgarian"]
+    name: "Morningside Hill",
+    logo: "/fund-logos/Morningside.png",
+    languages: ["English", "Bulgarian"],
+    size: "€25M",
+    website: "https://morningsidehill.com"
   }
 ];
 
@@ -50,7 +63,7 @@ const FundingChart = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-inter flex items-center gap-2">
+        <CardTitle className="font-inter flex items-center gap-2 uppercase">
           <TrendingUp className="h-5 w-5" />
           Funding Overview
         </CardTitle>
@@ -108,32 +121,43 @@ const FundingChart = () => {
             <div className="grid grid-cols-1 gap-2 mt-4">
               {majorFunds.map((fund, index) => (
                 <div key={index} className="flex flex-col gap-1 py-2 px-3 border border-muted hover:border-muted-foreground/20 transition-colors bg-transparent rounded-md">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-card rounded-md flex items-center justify-center overflow-hidden relative border border-gray-200">
-                      {/* Using image with fallback to initials */}
-                      <div className="w-full h-full flex items-center justify-center">
-                        <img 
-                          src={fund.logo} 
-                          alt={`${fund.name} logo`} 
-                          className="max-w-full max-h-full object-cover absolute inset-0 m-auto"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.onerror = null;
-                            target.style.display = 'none';
-                            target.nextElementSibling?.classList.remove('hidden');
-                          }}
-                        />
-                        <div className="w-8 h-8 bg-blue-50 rounded-md flex items-center justify-center text-xs text-blue-800 font-medium hidden absolute inset-0 m-auto">
-                          {fund.name.substring(0, 2).toUpperCase()}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-card rounded-md flex items-center justify-center overflow-hidden relative border border-gray-200">
+                        {/* Using image with fallback to initials */}
+                        <div className="w-full h-full flex items-center justify-center">
+                          <img 
+                            src={fund.logo} 
+                            alt={`${fund.name} logo`} 
+                            className="max-w-full max-h-full object-cover absolute inset-0 m-auto"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.onerror = null;
+                              target.style.display = 'none';
+                              target.nextElementSibling?.classList.remove('hidden');
+                            }}
+                          />
+                          <div className="w-8 h-8 bg-blue-50 rounded-md flex items-center justify-center text-xs text-blue-800 font-medium hidden absolute inset-0 m-auto">
+                            {fund.name.substring(0, 2).toUpperCase()}
+                          </div>
                         </div>
                       </div>
+                      <span className="text-sm font-medium truncate max-w-[180px]">{fund.name}</span>
                     </div>
-                    <span className="text-sm font-medium truncate max-w-[180px]">{fund.name}</span>
+                    <a href={fund.website} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
                   </div>
-
                 </div>
               ))}
             </div>
+              <div className="mt-4">
+                <Link to="/funds">
+                  <AppButton variant="ghost" className="w-full" size="sm">
+                    See All Funds
+                  </AppButton>
+                </Link>
+              </div>
           </div>
         </div>
       </CardContent>

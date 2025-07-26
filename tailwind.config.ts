@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -20,9 +21,9 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'pixelify': ['Pixelify Sans', 'sans-serif'],
-				'doto': ['Doto', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
+				sans: ['"Space Mono"', ...defaultTheme.fontFamily.mono],
+				heading: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
+				mono: ['"Space Mono"', ...defaultTheme.fontFamily.mono],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
